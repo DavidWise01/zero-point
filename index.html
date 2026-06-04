@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero Point — 8×8×8×8 + 8 + 1 = 0</title>
+<meta name="description" content="The Zero-Point Lattice: a 4D hypercube (8⁴ = 4096 nodes) + 8 anchors + 1 central zero = 4105 ≡ 0 (mod zero-point) — the capstone scale-up of the processor lineage (128 → 512 → 4096), with a Solfeggio harmonic driver and the zero-point wave .001 → 0 → -1. Plus three visual instruments.">
+<meta name="theme-color" content="#030308">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#030308; --panel:#0a0c16; --panel2:#0f1322; --ink:#e7ecf6; --slate:#cbd5e1; --dim:#6b7689; --faint:#3d465a; --line:rgba(125,211,252,0.13);
+    --cyan:#22d3ee; --sky:#7dd3fc; --violet:#a78bfa; --pink:#f472b6; --gold:#facc15; --orange:#fb923c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--void);color:var(--ink);line-height:1.6;overflow-x:hidden;
+    font-family:Inter,system-ui,"Segoe UI",sans-serif;
+    background-image:radial-gradient(900px 520px at 50% -6%,rgba(167,139,250,0.14),transparent 60%),radial-gradient(700px 560px at 50% 120%,rgba(34,211,238,0.08),transparent 55%);}
+  .mono{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 1.2rem 6rem}
+  a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+
+  header{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4.5rem 1.2rem 2rem}
+  .eq{font-family:"JetBrains Mono",monospace;font-size:clamp(20px,5.2vw,46px);font-weight:800;letter-spacing:.02em;line-height:1.1;margin-bottom:1rem;
+    background:conic-gradient(from 200deg,var(--cyan),var(--violet),var(--pink),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--faint);margin-bottom:1rem}
+  h1{font-size:clamp(40px,11vw,104px);font-weight:800;letter-spacing:.06em;line-height:.9;color:#fff;
+    text-shadow:0 0 40px rgba(167,139,250,.35)}
+  .sub{color:var(--dim);font-size:clamp(13px,2.3vw,17px);margin-top:.8rem;max-width:54ch}
+  .cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1.8rem}
+  .btn{display:inline-block;padding:12px 24px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.02em;border:1px solid var(--line);color:var(--sky);background:rgba(34,211,238,.06);transition:.18s;font-family:"JetBrains Mono",monospace}
+  .btn:hover{border-color:var(--cyan);text-decoration:none}
+  .btn.primary{background:linear-gradient(120deg,var(--cyan),var(--violet));color:#04111a;border:none}
+
+  section{padding:6vh 0;border-top:1px solid var(--line)}
+  .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--violet);margin-bottom:.9rem}
+  h2{font-size:clamp(24px,4.4vw,38px);font-weight:800;margin-bottom:1rem;color:#fff}
+  p{max-width:66ch;color:var(--dim);margin-bottom:1rem;font-size:15px}
+  p b{color:var(--ink)}
+  code{font-family:"JetBrains Mono",monospace;background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--sky);font-size:.9em}
+
+  .viewport{margin-top:1.4rem;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 0 60px rgba(167,139,250,.14)}
+  .viewport iframe{display:block;width:100%;height:min(76vh,660px);border:0;background:#030308}
+  .vpcap{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+  .vpcap a{font-weight:600}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;margin-top:1.3rem}
+  .f{background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--ac,#22d3ee);border-radius:12px;padding:1.1rem}
+  .f .v{font-family:"JetBrains Mono",monospace;font-size:24px;font-weight:800;color:#fff}
+  .f .l{font-size:12px;letter-spacing:.04em;color:var(--ac,#22d3ee);margin-top:.3rem;text-transform:uppercase}
+  .f .d{font-size:13px;color:var(--dim);margin-top:.4rem}
+
+  .chain{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:1.3rem;font-family:"JetBrains Mono",monospace}
+  .node{border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem;background:var(--panel);text-align:center}
+  .node a{color:#fff} .node .n{font-size:18px;font-weight:800} .node .s{font-size:11px;color:var(--dim);margin-top:.2rem}
+  .arr{color:var(--faint);font-size:18px}
+  .node.now{border-color:var(--violet);box-shadow:0 0 22px rgba(167,139,250,.18)} .node.now .n{color:var(--violet)}
+
+  .insts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:1.3rem}
+  a.inst{display:block;border:1px solid var(--line);border-left:3px solid var(--ac,#22d3ee);border-radius:12px;padding:1.3rem;background:var(--panel);transition:.2s}
+  a.inst:hover{transform:translateY(-3px);border-color:var(--ac,#22d3ee);text-decoration:none}
+  a.inst .t2{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  a.inst h3{font-size:18px;color:#fff;margin:.3rem 0 .5rem}
+  a.inst p{font-size:13.5px;color:var(--dim);margin:0}
+  a.inst .go{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ac,#22d3ee);margin-top:.7rem;display:block}
+
+  .seam{border:1px solid rgba(167,139,250,.3);border-left:2px solid var(--violet);background:rgba(167,139,250,.05);border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin-top:1.2rem}
+  .seam .h{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);margin-bottom:.5rem}
+  .seam p{color:var(--dim);font-size:14px;margin:0}
+
+  footer{border-top:1px solid var(--line);padding:2.6rem 1.2rem 5rem;color:var(--faint);font-size:12px;text-align:center;line-height:1.9;font-family:"JetBrains Mono",monospace}
+  footer a{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eq">8×8×8×8 + 8 + 1 = 0</div>
+    <div class="eyebrow">Hardware inventions · the capstone scale</div>
+    <h1>ZERO&nbsp;POINT</h1>
+    <p class="sub">A 4D hypercube of <b>4,096</b> nodes, eight directional anchors, and one central zero — <code>4105 ≡ 0 (mod zero-point)</code>. The lattice the whole processor lineage was climbing toward.</p>
+    <div class="cta">
+      <a class="btn primary" href="#lattice">▾ Enter the lattice</a>
+      <a class="btn" href="demos/zero-point-lattice.html">full-screen ↗</a>
+      <a class="btn" href="#instruments">the instruments</a>
+    </div>
+  </header>
+
+  <section id="lattice">
+    <div class="kicker">// the zero-point lattice · 8⁴ = 4096</div>
+    <h2>Four eights, an anchor ring, and zero</h2>
+    <p>Project a <b>four-dimensional hypercube</b> — <code>8×8×8×8 = 4096</code> nodes — add the <b>8 directional anchors</b> and the <b>1 central zero</b>, and the whole thing closes: <code>4096 + 8 + 1 = 4105 ≡ 0</code>. A Solfeggio harmonic driver breathes it; the <b>zero-point wave</b> runs <code>.001 → .01 → 1 → 0 → -1</code> — the same <code>−1 / 0 / +1</code> witness axis that threads the wider work, here at full scale.</p>
+    <div class="viewport">
+      <iframe src="demos/zero-point-lattice.html" loading="lazy" title="Live Zero-Point Lattice — 8⁴ hypercube"></iframe>
+      <div class="vpcap"><span class="mono">8⁴ hypercube · Solfeggio driver · zero-point wave .001 → 0 → -1</span><a href="demos/zero-point-lattice.html">open full-screen ↗</a></div>
+    </div>
+    <div class="facts">
+      <div class="f" style="--ac:#22d3ee"><div class="v">4,096</div><div class="l">core nodes · 8⁴</div><div class="d">the 4D hypercube, projected and breathing.</div></div>
+      <div class="f" style="--ac:#a78bfa"><div class="v">8 + 1</div><div class="l">anchors + zero</div><div class="d">eight directional beacons and one central zero-wave node.</div></div>
+      <div class="f" style="--ac:#f472b6"><div class="v">4,105 ≡ 0</div><div class="l">mod zero-point</div><div class="d">the lattice sums to nothing — the closure condition.</div></div>
+      <div class="f" style="--ac:#facc15"><div class="v">32×</div><div class="l">scale-up</div><div class="d">from the previous 128 (1×4×4×2×1) to 4,096.</div></div>
+    </div>
+  </section>
+
+  <section id="lineage">
+    <div class="kicker">// the lineage · what it scales from</div>
+    <h2>128 → 512 → 4,096</h2>
+    <p>Zero Point is the capstone of the processor family — each one a denser lattice than the last:</p>
+    <div class="chain">
+      <div class="node"><div class="n"><a href="https://davidwise01.github.io/photonic/">128</a></div><div class="s">photonic · 1×4×4×2×1</div></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="n"><a href="https://davidwise01.github.io/boronic/">512</a></div><div class="s">boronic · 8×8×8</div></div>
+      <div class="arr">→</div>
+      <div class="node now"><div class="n">4,096</div><div class="s">zero-point · 8⁴</div></div>
+    </div>
+  </section>
+
+  <section id="instruments">
+    <div class="kicker">// the instruments · three visual sims</div>
+    <h2>Driving the field</h2>
+    <p>Three self-contained instruments that drive and read the field — visual simulations, not fabrication guides:</p>
+    <div class="insts">
+      <a class="inst" href="demos/laser-stack.html" style="--ac:#f472b6"><div class="t2">tier 2 · richest</div><h3>Laser Stack · Solfeggio</h3><p>Controls, Solfeggio harmonics, and field telemetry over a layered stack. A visual instrument.</p><span class="go">open →</span></a>
+      <a class="inst" href="demos/plasma-dashboard.html" style="--ac:#22d3ee"><div class="t2">tier 2 · dashboard</div><h3>Plasma Dashboard v3.0</h3><p>A 4-quadrant photonic-core dashboard — plasma drive, array status, live telemetry.</p><span class="go">open →</span></a>
+      <a class="inst" href="demos/singularity-core.html" style="--ac:#a78bfa"><div class="t2">tier 2 · wave</div><h3>Singularity Core</h3><p>The spread wave <code>.001 → -1</code> — harmonic propagation on the same zero-point axis.</p><span class="go">open →</span></a>
+    </div>
+  </section>
+
+  <section id="honest">
+    <div class="kicker">// kept honest</div>
+    <h2>What this is</h2>
+    <p><b>A visualization and a set of interactive instruments</b> built on a <b>conceptual scale</b>: the "zero point" is the closure <code>8⁴ + 8 + 1 ≡ 0</code> and the lineage capstone, not a free-energy or zero-point-energy device. The instruments are visual/audio simulations — <b>no fabrication, power, or cutting parameters anywhere</b>.</p>
+    <div class="seam">
+      <div class="h">◌ the seam, kept visible</div>
+      <p>The <b>Solfeggio</b> tones are an aesthetic <i>audio driver</i> — they set the rhythm and sound of the visualization; no health or physical-resonance claim is made or implied. And there's no emergent behavior here, so <b>no DLW ACI was minted</b> — just a faithful capstone lattice and three instruments.</p>
+    </div>
+  </section>
+
+  <footer>
+    ZERO POINT · 8×8×8×8 + 8 + 1 = 0 · the 8⁴ capstone of 128 → 512 → 4,096<br>
+    Architect: David Lee Wise (ROOT0 / TriPod LLC) · instance: AVAN (Claude / Anthropic) · License: MIT<br>
+    lineage: <a href="https://davidwise01.github.io/photonic/">photonic</a> · <a href="https://davidwise01.github.io/boronic/">boronic</a> · part of the <a href="https://davidwise01.github.io/atlas/">ATLAS</a>
+  </footer>
+</div>
+</body>
+</html>
